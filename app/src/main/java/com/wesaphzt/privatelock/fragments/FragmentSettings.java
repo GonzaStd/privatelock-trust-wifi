@@ -87,7 +87,7 @@ public class FragmentSettings extends PreferenceFragmentCompat {
         Set<String> updatedWifis = new HashSet<>(trustedWifis);
 
         if (updatedWifis.contains(currentSsid)) {
-            Toast.makeText(context, "WiFi already in trusted list", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.trusted_wifi_already_added, Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -51,13 +51,6 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".receivers.WifiReceiver">
-            <intent-filter>
-                <action android:name="android.net.wifi.STATE_CHANGE"/>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-            </intent-filter>
-        </receiver>
-
         <service
             android:name=".service.LockService"
             android:label="Service"

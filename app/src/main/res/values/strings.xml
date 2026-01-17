@@ -51,6 +51,7 @@
     <string name="trusted_wifi_added">WiFi added to trusted list</string>
     <string name="trusted_wifi_removed">WiFi removed from trusted list</string>
     <string name="trusted_wifi_not_connected">Not connected to WiFi</string>
+    <string name="trusted_wifi_already_added">WiFi already in trusted list</string>
 
     <!--titles-->
     <string name="fragment_donate_title">Donate</string>

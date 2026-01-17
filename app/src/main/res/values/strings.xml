@@ -38,6 +38,21 @@
     <string name="action_show_intro">Show Intro</string>
     <string name="action_about">About</string>
 
+    <!--trusted wifi-->
+    <string name="trusted_wifi_title">Trusted WiFi Networks</string>
+    <string name="trusted_wifi_summary">Select WiFi networks where lock service will be disabled</string>
+    <string name="trusted_wifi_dialog_title">Add Trusted WiFi</string>
+    <string name="trusted_wifi_dialog_message">Enter the WiFi network name (SSID):</string>
+    <string name="trusted_wifi_dialog_current">Current WiFi: %1$s</string>
+    <string name="trusted_wifi_add">Add current WiFi</string>
+    <string name="trusted_wifi_manage">Manage trusted WiFis</string>
+    <string name="trusted_wifi_none">No trusted WiFi networks</string>
+    <string name="trusted_wifi_remove">Remove</string>
+    <string name="trusted_wifi_added">WiFi added to trusted list</string>
+    <string name="trusted_wifi_removed">WiFi removed from trusted list</string>
+    <string name="trusted_wifi_not_connected">Not connected to WiFi</string>
+    <string name="trusted_wifi_already_added">WiFi already in trusted list</string>
+
     <!--titles-->
     <string name="fragment_donate_title">Donate</string>
     <string name="fragment_donate_clipboard_label">Copied address</string>

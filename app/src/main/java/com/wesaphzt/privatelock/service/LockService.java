@@ -33,6 +33,7 @@ import com.wesaphzt.privatelock.receivers.DeviceAdminReceiver;
 import com.wesaphzt.privatelock.receivers.NotificationReceiver;
 import com.wesaphzt.privatelock.receivers.PauseReceiver;
 import com.wesaphzt.privatelock.receivers.PresenceReceiver;
+import com.wesaphzt.privatelock.receivers.WifiReceiver;
 import com.wesaphzt.privatelock.widget.LockWidgetProvider;
 
 import java.util.Objects;
@@ -76,6 +77,7 @@ public class LockService extends JobIntentService {
     public static final String ACTION_START_FOREGROUND_SERVICE = "ACTION_START_FOREGROUND_SERVICE";
 
     PresenceReceiver presenceReceiver;
+    WifiReceiver wifiReceiver;
 
     //check to stop multiple triggers
     boolean isHit = false;
@@ -103,6 +105,16 @@ public class LockService extends JobIntentService {
                     IntentFilter intentFilter = new IntentFilter(Intent.ACTION_USER_PRESENT);
                     intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
                     registerReceiver(presenceReceiver, intentFilter);
+                    
+                    // Register WiFi receiver
+                    wifiReceiver = new WifiReceiver();
+                    IntentFilter wifiIntentFilter = new IntentFilter();
+                    wifiIntentFilter.addAction(android.net.wifi.WifiManager.NETWORK_STATE_CHANGED_ACTION);
+                    wifiIntentFilter.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION);
+                    registerReceiver(wifiReceiver, wifiIntentFilter);
+                    
+                    // Check initial WiFi state
+                    WifiReceiver.checkInitialWifiState(context);
                     //------------------------------------------------------------------------------------------
                     try {
                         SENSITIVITY = prefs.getInt(MainActivity.PREFS_THRESHOLD, DEFAULT_SENSITIVITY);
@@ -149,6 +161,15 @@ public class LockService extends JobIntentService {
                     }
 
                     unregisterReceiver(presenceReceiver);
+                    
+                    if (wifiReceiver != null) {
+                        try {
+                            unregisterReceiver(wifiReceiver);
+                        } catch (IllegalArgumentException e) {
+                            // Receiver was not registered
+                            e.printStackTrace();
+                        }
+                    }
 
                     disabled = true;
                     mInitialized = false;

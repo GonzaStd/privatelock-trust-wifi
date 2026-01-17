@@ -69,7 +69,7 @@ public class WifiReceiver extends BroadcastReceiver {
         }
     }
 
-    private boolean isTrustedWifi(Context context, String ssid) {
+    private static boolean isTrustedWifi(Context context, String ssid) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> trustedWifis = prefs.getStringSet(TRUSTED_WIFI_KEY, new HashSet<String>());
         return trustedWifis.contains(ssid);

@@ -30,8 +30,13 @@ jobs:
     - name: Get APK file name
       id: apk_name
       run: |
-        echo "apk_file=$(ls app/build/outputs/apk/release/*.apk | head -1)" >> $GITHUB_OUTPUT
-        echo "apk_basename=$(basename $(ls app/build/outputs/apk/release/*.apk | head -1))" >> $GITHUB_OUTPUT
+        APK_FILE=$(find app/build/outputs/apk/release -name "*.apk" -type f | head -1)
+        if [ -z "$APK_FILE" ]; then
+          echo "Error: No APK file found"
+          exit 1
+        fi
+        echo "apk_file=$APK_FILE" >> $GITHUB_OUTPUT
+        echo "apk_basename=$(basename $APK_FILE)" >> $GITHUB_OUTPUT
     
     - name: Create Release
       id: create_release

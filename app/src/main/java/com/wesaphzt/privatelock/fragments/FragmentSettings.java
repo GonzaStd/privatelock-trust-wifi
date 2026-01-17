@@ -96,7 +96,8 @@ public class FragmentSettings extends PreferenceFragmentCompat {
 
         updatedWifis.add(currentSsid);
         sharedPreferences.edit().putStringSet(WifiReceiver.TRUSTED_WIFI_KEY, updatedWifis).apply();
-        Toast.makeText(context, getString(R.string.trusted_wifi_added) + ": " + currentSsid, Toast.LENGTH_SHORT).show();
+        String message = getString(R.string.trusted_wifi_added) + ": " + currentSsid;
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         
         // Re-check WiFi state
         WifiReceiver.checkInitialWifiState(context);

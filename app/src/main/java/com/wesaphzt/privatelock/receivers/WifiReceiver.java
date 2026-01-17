@@ -55,7 +55,7 @@ public class WifiReceiver extends BroadcastReceiver {
 
                 Log.d(TAG, "Connected to WiFi: " + ssid);
 
-                if (isTrustedWifi(context, ssid)) {
+                if (ssid != null && isTrustedWifi(context, ssid)) {
                     Log.d(TAG, "Connected to trusted WiFi, disabling lock service");
                     LockService.disabled = true;
                 } else {
@@ -72,6 +72,9 @@ public class WifiReceiver extends BroadcastReceiver {
     private static boolean isTrustedWifi(Context context, String ssid) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> trustedWifis = prefs.getStringSet(TRUSTED_WIFI_KEY, new HashSet<String>());
+        if (trustedWifis == null) {
+            trustedWifis = new HashSet<>();
+        }
         return trustedWifis.contains(ssid);
     }
 

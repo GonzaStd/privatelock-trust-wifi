@@ -65,7 +65,7 @@ Removing either of these xmlns declarations would:
 - ❌ Prevent the app from building
 
 If your firewall is flagging these:
-1. **Whitelist these specific xmlns patterns** in your firewall/security tool
+1. **Add these specific xmlns patterns to your allowlist** in your firewall/security tool
 2. Configure your security scanner to understand XML namespace declarations
 3. These are standard, required, and safe components of Android development
 

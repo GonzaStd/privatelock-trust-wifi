@@ -84,6 +84,9 @@ public class FragmentSettings extends PreferenceFragmentCompat {
         }
 
         Set<String> trustedWifis = sharedPreferences.getStringSet(WifiReceiver.TRUSTED_WIFI_KEY, new HashSet<String>());
+        if (trustedWifis == null) {
+            trustedWifis = new HashSet<>();
+        }
         Set<String> updatedWifis = new HashSet<>(trustedWifis);
 
         if (updatedWifis.contains(currentSsid)) {
@@ -101,6 +104,9 @@ public class FragmentSettings extends PreferenceFragmentCompat {
 
     private void showManageTrustedWifiDialog() {
         Set<String> trustedWifis = sharedPreferences.getStringSet(WifiReceiver.TRUSTED_WIFI_KEY, new HashSet<String>());
+        if (trustedWifis == null) {
+            trustedWifis = new HashSet<>();
+        }
         
         if (trustedWifis.isEmpty()) {
             Toast.makeText(context, R.string.trusted_wifi_none, Toast.LENGTH_SHORT).show();

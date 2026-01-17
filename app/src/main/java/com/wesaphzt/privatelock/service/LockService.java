@@ -162,10 +162,13 @@ public class LockService extends JobIntentService {
 
                     unregisterReceiver(presenceReceiver);
                     
-                    try {
-                        unregisterReceiver(wifiReceiver);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    if (wifiReceiver != null) {
+                        try {
+                            unregisterReceiver(wifiReceiver);
+                        } catch (IllegalArgumentException e) {
+                            // Receiver was not registered
+                            e.printStackTrace();
+                        }
                     }
 
                     disabled = true;

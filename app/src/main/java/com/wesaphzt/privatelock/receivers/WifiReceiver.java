@@ -22,15 +22,16 @@ public class WifiReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction() != null && 
-            (intent.getAction().equals(WifiManager.NETWORK_STATE_CHANGED_ACTION) ||
-             intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION))) {
+        String action = intent != null ? intent.getAction() : null;
+        if (action != null && 
+            (action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION) ||
+             action.equals(ConnectivityManager.CONNECTIVITY_ACTION))) {
             
             checkWifiConnection(context);
         }
     }
 
-    private void checkWifiConnection(Context context) {
+    private static void checkWifiConnection(Context context) {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -75,7 +76,6 @@ public class WifiReceiver extends BroadcastReceiver {
     }
 
     public static void checkInitialWifiState(Context context) {
-        WifiReceiver receiver = new WifiReceiver();
-        receiver.checkWifiConnection(context);
+        checkWifiConnection(context);
     }
 }

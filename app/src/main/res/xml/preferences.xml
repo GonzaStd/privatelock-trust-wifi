@@ -29,4 +29,18 @@
             android:title="Pause length" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/trusted_wifi_title">
+
+        <Preference
+            android:key="TRUSTED_WIFI_ADD"
+            android:title="@string/trusted_wifi_add" />
+
+        <Preference
+            android:key="TRUSTED_WIFI_MANAGE"
+            android:title="@string/trusted_wifi_manage"
+            android:summary="@string/trusted_wifi_summary" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -5,7 +5,6 @@ plugins {
 android {
     namespace 'com.wesaphzt.privatelock'
     compileSdkVersion 29
-    
     defaultConfig {
         applicationId "com.wesaphzt.privatelock"
         minSdkVersion 17
